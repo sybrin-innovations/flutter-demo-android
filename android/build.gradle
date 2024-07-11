@@ -1,0 +1,32 @@
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url = 'https://maven.pkg.github.com/sybrin-innovations/Sybrin-Android-SDK-Identity'
+            credentials {
+                username "sybrin-innovations"
+                password "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"
+            }
+        }
+        maven {
+            url = 'https://maven.pkg.github.com/sybrin-innovations/Sybrin-Android-SDK-Biometrics'
+            credentials {
+                username "sybrin-innovations"
+                password "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"
+            }
+        }
+    }
+}
+
+rootProject.buildDir = "../build"
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(":app")
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
